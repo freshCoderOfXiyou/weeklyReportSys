@@ -7,7 +7,7 @@
 	#footer{
 		width: 100%;
 		height: 150px;
-		background: red;
+		/*background: red;*/
 		text-align: center;
 	}
 </style>

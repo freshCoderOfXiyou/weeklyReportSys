@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view></router-view> 
+    <router-view id="contents"></router-view> 
   </div>
 </template>
 
@@ -24,6 +24,7 @@ export default {
   color: #2c3e50;
   /*margin-top: 60px;*/
 }
+
 </style>
 
 <script type="text/javascript">
