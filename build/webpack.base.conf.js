@@ -9,9 +9,11 @@ function resolve (dir) {
 }
 
 module.exports = {
+  // enrty file
   entry: {
     app: './src/main.js'
   },
+  // at enviroment of prodction , which lead those file
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
@@ -23,6 +25,7 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
+      // @ mean src ,which will use when import some component or module
       '@': resolve('src'),
     }
   },
