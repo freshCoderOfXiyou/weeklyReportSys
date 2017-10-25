@@ -33,9 +33,9 @@
 				<div id="submitDiv" @click="subInfo">
 					<button id="submitBtn">submit</button>
 				</div>
-				<p>
+				<!-- <p>
 					{{work}}
-				</p>
+				</p> -->
 				<div id="alert" v-show="inputError">
 					The password isn't same , please input again.
 				</div>
@@ -94,11 +94,11 @@ export default {
 	data(){
 		return{
 			registerArea:false,
-			username:"jyy",
-			userpsw:"abc",
-			confirmpsw:"abc",
+			username:"jiangyy",
+			userpsw:"123",
+			confirmpsw:"123",
 			inputError:false,
-			userId:"7000",
+			userId:"7003",
 			selectedWork:[],
 			/*work:['电影','电视剧','少儿','娱乐','体育','新闻','爱学习','记录','爱爸妈','健身','音乐','爱宠','财经','栏目','点播','高清','游戏','芒果','电竞','大片','首页','播控','杭州生活','个人中心','杭州发布']*/
 			work:[{ename:"movie",cname:'电影',check:false},{ename:"series",cname:'电视剧',check:false},{ename:"child",cname:'少儿',check:false},{ename:"entertain",cname:'娱乐',check:false},{ename:"sport",cname:'体育',check:false},{ename:"news",cname:'新闻',check:false},{ename:"loveLearn",cname:'爱学习',check:false}]
@@ -113,10 +113,14 @@ export default {
 			for (var i = this.work.length - 1; i >= 0; i--) {
 				if (this.work[i].check) {
 					this.selectedWork[i]=this.work[i].ename	
-				}
-				
+				}	
 			}
-			if (this.chooseRegister && !this.inputError) {
+			if (this.inputError) {
+				this.inputError = true 
+				return	
+			}
+			if (this.registerArea) {
+				console.log("for register api")
 				axios.post("/apiregister/register",{
 						name:this.username,
 						psw:this.userpsw,
@@ -124,17 +128,18 @@ export default {
 						work:this.selectedWork
 					})
 					.then((res)=>{
-						console.log(res)
+						console.log(res.data)
 					})
 					.catch(function (error) {
 					    console.log(error);
 					});
-			}else{
+			}
+			else{
 				axios.post("/apiregister/load",{
 					psw:this.userpsw,
 					id:this.userId
 				}).then((res)=>{
-					console.log(res)
+					console.log(res.data)
 				})
 				.catch((err)=>{
 					console.error(err)

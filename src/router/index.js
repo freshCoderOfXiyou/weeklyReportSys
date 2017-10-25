@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import vfooter from "@/components/vfooter"
 import loadCompo from "@/view/load.vue"
+import operaCompo from "@/view/operation"
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
     	path:"/load",
     	name:"loadRouter",
     	component:loadCompo
+    },
+    {
+      path:"/opera",
+      name:"operaCompo",
+      component:operaCompo
     }
   ]
 }) 
