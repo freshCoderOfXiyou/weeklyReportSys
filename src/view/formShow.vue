@@ -5,46 +5,35 @@
 	<div id="operaMainMid">
 	<span>{{dateValue}}</span>
 	<input type="month" name="" v-model="dateValue">
-	<div id="operationHeader">
+	<span id="search" @click="searchInfo">查询</span>
+	<div id="operationHeader">          
 		<span id="opHeaderIndex">序号</span>
 		<span id="opHeaderColumn">栏目</span>
-		<span id="opHeaderAnother">其他栏目</span>
-		<span id="opHeaderJob">类别</span>
-		<span id="opHeaderCount">数量</span>
-		<span id="opHeaderAdd">新增</span>
-		<span id="opHeaderDelete">删除</span>
+		<span id="opHeaderFixed">维护</span>
+		<span id="opHeaderUpdate">更新</span>
+		<span id="opHeaderActivity">活动</span>
+		<span id="opHeaderThemecollec">专题</span>
+		<span id="opHeaderDebugger">故障</span>
+		<span id='opHeaderOther'>其它</span>
+		<span id="opHeaderTotal">总计</span>
 	</div>
-	<div id="operationLine" v-for="item in lineData">
-		<span id="operLineIndex">{{item.index}}</span>
-		<span id="operLineColumn">
-			<span v-for="item in chooseJsonCh">
-				<input type="radio" name="column" :id="item">
-				<label :for="item"> {{item}} </label>
-			</span>
+	<div class="operationLine" v-for="item in lineData">
+		<span class="operLineIndex">{{item.index}}</span>
+		<span class="operLineColumn" :data-column="item.lineEname">
+			<span>{{item.columnCname}}</span>
 		</span>
-		<span id="operLineAnother">
-			<select :selectedIndex="selectValue" @change="selectAnother">
-				<option v-for="item in selectData" :value="item.ename">{{item.cname}}</option>
-			</select>
-		</span>
-		<span id="operLineJob">
-			<span v-for="item in jobJsonData">
-				<input type="radio" name="job"  :id="item.ename">
-				<label :for="item.ename"> {{item.cname}} </label>
-			</span>
-		</span>
-		<span id="operLineCount">
-			<input type="number" name="" id="operLineCountInput">
-		</span>
-		<span id="operLineAdd">
-			<span @click="addLine">+</span>
-		</span>
-		<span id="operLineDelete">
-			<span @click="deleteLine(item.index)" :data-index="item.index">X</span>
-		</span>
-	</div>
-	<div>{{selectValue}}</div>
+		<span class="operLineFixed">{{item.fixedNum}}</span>
+		<span class="operLineUpdate">{{item.updateNum}}</span>
+		<span class="operLineActivity">{{item.activityNum}}</span>
+		<span class="operLineTheme">{{item.themeNum}}</span>
+		<span class="operLineDebugger">{{item.debuggerNum}}</span>
+		<span class="operLineIFrame">{{item.otherNum}}</span>
+		<span class="operLineTotal">{{item.totalNum}}</span>
 
+	</div>
+	<p>{{showData}}</p>
+
+	
 	</div>
 	<vfooter></vfooter>
 </div>
@@ -62,26 +51,20 @@
 	line-height: 30px;
 	display: flex;
 }
-	#opHeaderIndex{
+	#operationHeader .operLineIndex{
 		flex: 1;
 	}
-	#opHeaderColumn{
-		flex: 8;
-	}
-	#opHeaderAnother{
+	#operationHeader>span{
 		flex: 2;
 	}
-	#opHeaderJob{
-		flex: 6;
-	}
-	#opHeaderCount{
-		flex: 1;
-	}
-	#opHeaderAdd{
-		flex: 1;
-	}
-	#opHeaderDelete{
-		flex: 1;
+	#search{
+		display: inline-block;
+		background: #aaa;
+		color:white;
+		display: inline-block;
+		width: 80px;
+		height: 25px;
+		cursor: pointer;
 	}
 #operaMainMid{
 	width: 1190px;
@@ -89,7 +72,7 @@
 	margin: 0 auto;
 	background: #eee;
 }
-#operationLine{
+.operationLine{
 	width: 100%;
 	margin: 0 auto;
 	/*background: ;*/
@@ -100,70 +83,39 @@
 	line-height: 30px;
 	border:1px solid black;
 	border-top: none;
+	border-left: none;
 }
-	#operLineIndex{
+	.operationLine > span{
 		flex: 1;
-		background: #ccc;
+		border-left: 1px solid black;
 	}
-	#operLineColumn{
-		flex:8;
+	.operationLine > span:frist-child{
+		border-left: none;
 	}
-	#operLineColumn>span>label , input,#operLineJob>span>label{
+	.operationLine > span > input {
+		width: 90%;
+		height: 90%;
+		font-size: 20px;
+		background: #EEE;
+		text-align: center;
+		border:none;
+		outline: none;
 		cursor: pointer;
 	}
-	#operLineAnother{
-		flex: 2;
-		background: #ccc;
-
-	}
-	#operLineJob{
-		flex: 6;
-	}
-
-	#operLineCount{
-		background: #ccc;
-		flex: 1;
-	}
-	#operLineAdd{
-		flex: 1;
-
-	}
-	#operLineDelete{
-		background: #ccc;
-		flex: 1;
-
-	}
-
-	#operLineAdd>span,#operLineDelete>span{
-		width: 30px;
-		height: 20px;
-		line-height: 20px;
-		background: #ccc;
-		border: 1px solid #999;
-
-		display: inline-block;
-		/*margin-top: 5px;*/
-		cursor: pointer;
-		/*color: red;*/
-		font-size: 18px;
-		/*transform: translateY(5px);*/
-	}
-	#operLineAdd>span:hover{
-		color: white;
-		background: green;
-	}
-	#operLineDelete>span:hover{
-		color:white;
-		background: red;
-	}
-	#operLineCountInput{
-		width: 50px;
-	}
+#submit{
+	width: 150px;
+	height: 50px;
+	background: red;
+	color: white;
+	cursor: pointer;
+}
 </style>
 <script type="text/javascript">
 	import vfooter from "@/components/vfooter.vue"
 	import vhead from "@/components/vhead.vue"
-	var testJson = ["life","sports","series","film"]
+	import axios from "axios"
+
+	var testJson = ["movie","series","child","entertain"]
 	export default {
 		data(){
 			return{
@@ -212,23 +164,41 @@
 					{ename:'bugger',cname:'故障'},
 					{ename:'iframe',cname:'弹窗'}
 				],
-				lineData:[
-					{index:1,column:"",job:"",num:""}
-				]
+				lineData:[],
+				manId:"7003",
+				man:"江杨阳",
+				showData:{}
 			}
 		},
 		methods:{
-			selectAnother:()=>{
-				console.log("trigger select component onchange event")
-			},
-			addLine:function(){
-				var lineDataLen = this.lineData.length
-				var newLineData = {index:lineDataLen + 1,column:"",job:"",num:""}
-				this.lineData.push(newLineData)
-			},
-			deleteLine:function(arg){
-				console.log(arg)
-				this.lineData.splice(arg-1,1)
+			searchInfo:function(){
+				axios.post("/work/query",{date:this.dateValue})
+				.then((res)=>{
+					console.log(res.data.data)
+					var ajaxData = res.data.data
+ 					for (var i = 0; i < ajaxData.length; i++) {
+ 						var thisColumnName = ajaxData[i].column
+ 						if (this.showData[thisColumnName]) {
+ 							this.showData[thisColumnName].fixedNum += ajaxData[i].fixedNum
+ 							this.showData[thisColumnName].updateNum += ajaxData[i].updateNum
+ 							this.showData[thisColumnName].activityNum += ajaxData[i].activityNum
+ 							this.showData[thisColumnName].themeNum += ajaxData[i].themeNum
+ 							this.showData[thisColumnName].debuggerNum += ajaxData[i].debuggerNum
+ 							this.showData[thisColumnName].otherNum += ajaxData[i].otherNum
+ 						}else{
+ 							this.showData[thisColumnName] = ajaxData[i]
+ 						}
+ 					}
+					for(var i =0  , len = ajaxData.length ; i < len ; i++){
+						ajaxData[i].index = i +1
+						ajaxData[i].totalNum = ajaxData[i].fixedNum + ajaxData[i].updateNum +ajaxData[i].activityNum +ajaxData[i].themeNum +ajaxData[i].debuggerNum +ajaxData[i].otherNum 
+						this.lineData.push(ajaxData[i])
+					}
+
+				})
+				.catch((err)=>{
+					console.log(err)
+				})
 			}
 		},
 		components:{
@@ -243,11 +213,6 @@
 			var tempDate = this.nowYear + "-" + this.nowMonth
 			this.dateValue = tempDate
 
-			//
-			for (var i = this.chooseJsonEn.length - 1; i >= 0; i--) {
-				var chName = this.ChForEn[this.chooseJsonEn[i]]
-				this.chooseJsonCh.push(chName)
-			}
 		}
 	}
 </script>

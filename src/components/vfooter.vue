@@ -1,13 +1,15 @@
 <template>
 	<div id="footer">
-		this is footer , for copy right
+		@copyright 华数传媒网络有限公司
 	</div>
 </template>
 <style type="text/css">
 	#footer{
 		width: 100%;
-		height: 150px;
-		/*background: red;*/
+		height: 40px;
+		line-height: 40px;
+		color:white;
+		background: #333;
 		text-align: center;
 	}
 </style>

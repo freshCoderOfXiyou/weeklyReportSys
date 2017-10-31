@@ -4,7 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import vfooter from "@/components/vfooter"
 import loadCompo from "@/view/load.vue"
 import operaCompo from "@/view/operation"
-
+import formCompo from "@/view/formOpera"
+import formShow from "@/view/formShow"
 Vue.use(Router)
 
 export default new Router({
@@ -28,6 +29,16 @@ export default new Router({
       path:"/opera",
       name:"operaCompo",
       component:operaCompo
+    },
+    {
+      path:"/form",
+      name:"formCompo",
+      component:formCompo
+    },
+    {
+      path:"/show",
+      name:"formShow",
+      component:formShow
     }
   ]
 }) 

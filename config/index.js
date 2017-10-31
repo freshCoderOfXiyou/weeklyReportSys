@@ -39,6 +39,14 @@ module.exports = {
             pathRewrite:{
                 "^/apiregister":""
             }
+        },
+        "/work":{
+            target:"http://127.0.0.1:3000/work",
+            secure:false,
+            changeOrigin:true,
+            pathRewrite:{
+                "^/work":""
+            }
         }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

@@ -1,8 +1,8 @@
 <template>
 	<div id="headerArea">
 		<div id="headerInnerArea">
-			<span>this is my header</span>
-			<span id="headerExit">exit</span>
+			<span>互动电视家庭产品部模板开发工作量统计系统</span>
+			<span id="headerExit">退出</span>
 			<span id="headerName">
 				<slot name="userName" ></slot>
 			</span>
@@ -13,7 +13,7 @@
 	#headerArea{
 		width: 100%;
 		height: 35px;
-		background: #C12127;
+		background: #333;
 	}
 	#headerInnerArea{
 		width: 1190px;
@@ -26,11 +26,18 @@
 		#headerName{
 			float: right;
 			margin-right: 10px;
+			cursor: pointer;
+			transition: transfrom;
 		}
 		#headerExit{
 			float: right;
 			margin-right:20px;
-
+			cursor: pointer;
+			transition: transfrom 1s;
+		}
+		#headerName:hover , #headerExit:hover{
+			color:#ddd;
+			transform: translate(-2px) ;
 		}
 </style>
 <script type="text/javascript">
